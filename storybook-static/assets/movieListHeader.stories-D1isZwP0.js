@@ -1,0 +1,5 @@
+import{j as t}from"./jsx-runtime-DCCOt0jE.js";import{P as i,T as n,M as c}from"./Typography-BAgi0d9v.js";import{M as d}from"./moviesContext-DokIXCcu.js";import"./index-BeMkoiPZ.js";const p={root:{display:"flex",justifyContent:"center",alignItems:"center",marginBottom:1.5,padding:2}},m=({title:e})=>t.jsx(i,{component:"div",sx:p.root,children:t.jsx(n,{variant:"h4",component:"h1",children:e})});try{headerMovieList.displayName="headerMovieList",headerMovieList.__docgenInfo={description:"",displayName:"headerMovieList",props:{title:{defaultValue:null,description:"",name:"title",required:!0,type:{name:"string"}}}}}catch{}const y={title:"Home Page/Header",component:m,decorators:[e=>t.jsx(c,{initialEntries:["/"],children:e()}),e=>t.jsx(d,{children:e()})]},r={args:{title:"Discover Movies"}};r.storyName="Default";var o,s,a;r.parameters={...r.parameters,docs:{...(o=r.parameters)==null?void 0:o.docs,source:{originalSource:`{
+  args: {
+    title: 'Discover Movies'
+  }
+}`,...(a=(s=r.parameters)==null?void 0:s.docs)==null?void 0:a.source}}};const g=["Basic"];export{r as Basic,g as __namedExportsOrder,y as default};
