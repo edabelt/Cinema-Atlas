@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 112" role="img" aria-labelledby="title description">
+  <title id="title">Cinema Atlas</title>
+  <desc id="description">A film camera containing a globe and connected data points, followed by the Cinema Atlas wordmark.</desc>
+  <defs>
+    <linearGradient id="camera" x1="8" y1="12" x2="112" y2="102" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5B8DEF"/>
+      <stop offset="1" stop-color="#315AA8"/>
+    </linearGradient>
+    <linearGradient id="atlas" x1="318" y1="32" x2="506" y2="84" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F0B35A"/>
+      <stop offset="1" stop-color="#D89A43"/>
+    </linearGradient>
+    <clipPath id="lensClip">
+      <circle cx="55" cy="56" r="27"/>
+    </clipPath>
+  </defs>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="8" y="18" width="92" height="76" rx="17" fill="url(#camera)" stroke="#DCE8FF" stroke-width="3"/>
+    <path d="M100 42 126 29v54l-26-13z" fill="#315AA8" stroke="#DCE8FF" stroke-width="3"/>
+
+    <circle cx="55" cy="56" r="28" fill="#101827" stroke="#FFF" stroke-width="3"/>
+    <g clip-path="url(#lensClip)" stroke="#5B8DEF" stroke-width="2">
+      <path d="M27 56h56M31 43h48M31 69h48" opacity=".9"/>
+      <ellipse cx="55" cy="56" rx="14" ry="28"/>
+      <ellipse cx="55" cy="56" rx="26" ry="28" opacity=".72"/>
+    </g>
+    <path d="m41 66 12-12 10 7 12-16" stroke="#F0B35A" stroke-width="3"/>
+    <circle cx="41" cy="66" r="4" fill="#78C6A3" stroke="#101827" stroke-width="2"/>
+    <circle cx="53" cy="54" r="4" fill="#F0B35A" stroke="#101827" stroke-width="2"/>
+    <circle cx="63" cy="61" r="4" fill="#5B8DEF" stroke="#101827" stroke-width="2"/>
+    <circle cx="75" cy="45" r="4" fill="#78C6A3" stroke="#101827" stroke-width="2"/>
+  </g>
+
+  <text x="148" y="72" fill="#FFFFFF" font-family="Inter, Avenir Next, Segoe UI, Arial, sans-serif" font-size="50" font-weight="750" letter-spacing="-1.5">Cinema</text>
+  <text x="335" y="72" fill="url(#atlas)" font-family="Inter, Avenir Next, Segoe UI, Arial, sans-serif" font-size="50" font-weight="750" letter-spacing="-1.5">Atlas</text>
+  <text x="151" y="94" fill="#AEB8CA" font-family="Inter, Avenir Next, Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" letter-spacing="3.2">VISUAL CINEMA ANALYTICS</text>
+</svg>

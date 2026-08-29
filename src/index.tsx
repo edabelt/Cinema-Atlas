@@ -11,6 +11,10 @@ import {
   QueryClientProvider,
 } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import {
+  CssBaseline,
+  ThemeProvider,
+} from "@mui/material";
 
 import LandingPage from "./pages/landingPage";
 import HomePage from "./pages/homePage";
@@ -28,6 +32,7 @@ import LoginPage from "./pages/loginPage";
 import DashboardPage from "./pages/dashboardPage";
 import PlaylistsPage from "./pages/playlistsPage";
 import PlaylistDetailsPage from "./pages/playlistDetailsPage";
+import CinemaAtlasPage from "./pages/cinemaAtlasPage";
 
 import SiteHeader from "./components/siteHeader";
 import SiteFooter from "./components/siteFooter";
@@ -36,6 +41,8 @@ import ProtectedRoute from "./components/protectedRoute";
 import MoviesContextProvider from "./contexts/moviesContext";
 import ActorsContextProvider from "./contexts/actorsContext";
 import AuthContextProvider from "./contexts/authContext";
+
+import theme from "./theme";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -49,138 +56,172 @@ const queryClient = new QueryClient({
 
 const App: React.FC = () => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <AuthContextProvider>
-          <ActorsContextProvider>
-            <MoviesContextProvider>
-              <div
-                style={{
-                  minHeight: "100vh",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <SiteHeader />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
 
-                <main style={{ flexGrow: 1 }}>
-                  <Routes>
-                    <Route
-                      path="/signup"
-                      element={<SignUpPage />}
-                    />
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <AuthContextProvider>
+            <ActorsContextProvider>
+              <MoviesContextProvider>
+                <div
+                  style={{
+                    minHeight: "100vh",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <SiteHeader />
 
-                    <Route
-                      path="/login"
-                      element={<LoginPage />}
-                    />
+                  <main style={{ flexGrow: 1 }}>
+                    <Routes>
+                      <Route
+                        path="/"
+                        element={
+                          <LandingPage />
+                        }
+                      />
 
-                    <Route
-                      path="/movies"
-                      element={<HomePage />}
-                    />
+                      <Route
+                        path="/signup"
+                        element={
+                          <SignUpPage />
+                        }
+                      />
 
-                    <Route
-                      path="/dashboard"
-                      element={
-                        <ProtectedRoute>
-                          <DashboardPage />
-                        </ProtectedRoute>
-                      }
-                    />
+                      <Route
+                        path="/login"
+                        element={<LoginPage />}
+                      />
 
-                    <Route
-                      path="/movies/playlists"
-                      element={
-                        <ProtectedRoute>
-                          <PlaylistsPage />
-                        </ProtectedRoute>
-                      }
-                    />
+                      <Route
+                        path="/movies"
+                        element={<HomePage />}
+                      />
 
-                    <Route
-                      path="/movies/playlists/:id"
-                      element={
-                        <ProtectedRoute>
-                          <PlaylistDetailsPage />
-                        </ProtectedRoute>
-                      }
-                    />
+                      <Route
+                        path="/movies/upcoming"
+                        element={
+                          <UpcomingMoviesPage />
+                        }
+                      />
 
-                    <Route
-                      path="/movies/upcoming"
-                      element={<UpcomingMoviesPage />}
-                    />
+                      <Route
+                        path="/movies/:id"
+                        element={<MoviePage />}
+                      />
 
-                    <Route
-                      path="/movies/favourites"
-                      element={
-                        <ProtectedRoute>
-                          <FavouriteMoviesPage />
-                        </ProtectedRoute>
-                      }
-                    />
+                      <Route
+                        path="/reviews/form"
+                        element={
+                          <AddMovieReviewPage />
+                        }
+                      />
 
-                    <Route
-                      path="/movies/:id"
-                      element={<MoviePage />}
-                    />
+                      <Route
+                        path="/reviews/:id"
+                        element={
+                          <MovieReviewPage />
+                        }
+                      />
 
-                    <Route
-                      path="/reviews/form"
-                      element={<AddMovieReviewPage />}
-                    />
+                      <Route
+                        path="/actors"
+                        element={
+                          <PopularActorsPage />
+                        }
+                      />
 
-                    <Route
-                      path="/reviews/:id"
-                      element={<MovieReviewPage />}
-                    />
+                      <Route
+                        path="/actors/reviews/form"
+                        element={
+                          <AddActorReviewPage />
+                        }
+                      />
 
-                    <Route
-                      path="/actors"
-                      element={<PopularActorsPage />}
-                    />
+                      <Route
+                        path="/actors/:id"
+                        element={
+                          <ActorDetailsPage />
+                        }
+                      />
 
-                    <Route
-                      path="/actors/favourites"
-                      element={
-                        <ProtectedRoute>
-                          <FavouriteActorsPage />
-                        </ProtectedRoute>
-                      }
-                    />
+                      <Route
+                        path="/cinema-atlas"
+                        element={
+                          <CinemaAtlasPage />
+                        }
+                      />
 
-                    <Route
-                      path="/actors/reviews/form"
-                      element={<AddActorReviewPage />}
-                    />
+                      <Route
+                        path="/dashboard"
+                        element={
+                          <ProtectedRoute>
+                            <DashboardPage />
+                          </ProtectedRoute>
+                        }
+                      />
 
-                    <Route
-                      path="/actors/:id"
-                      element={<ActorDetailsPage />}
-                    />
+                      <Route
+                        path="/movies/favourites"
+                        element={
+                          <ProtectedRoute>
+                            <FavouriteMoviesPage />
+                          </ProtectedRoute>
+                        }
+                      />
 
-                    <Route
-                      path="/"
-                      element={<LandingPage />}
-                    />
+                      <Route
+                        path="/movies/playlists"
+                        element={
+                          <ProtectedRoute>
+                            <PlaylistsPage />
+                          </ProtectedRoute>
+                        }
+                      />
 
-                    <Route
-                      path="*"
-                      element={<Navigate to="/" />}
-                    />
-                  </Routes>
-                </main>
+                      <Route
+                        path="/movies/playlists/:id"
+                        element={
+                          <ProtectedRoute>
+                            <PlaylistDetailsPage />
+                          </ProtectedRoute>
+                        }
+                      />
 
-                <SiteFooter />
-              </div>
-            </MoviesContextProvider>
-          </ActorsContextProvider>
-        </AuthContextProvider>
-      </BrowserRouter>
+                      <Route
+                        path="/actors/favourites"
+                        element={
+                          <ProtectedRoute>
+                            <FavouriteActorsPage />
+                          </ProtectedRoute>
+                        }
+                      />
 
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+                      <Route
+                        path="*"
+                        element={
+                          <Navigate
+                            to="/"
+                            replace
+                          />
+                        }
+                      />
+                    </Routes>
+                  </main>
+
+                  <SiteFooter />
+                </div>
+              </MoviesContextProvider>
+            </ActorsContextProvider>
+          </AuthContextProvider>
+        </BrowserRouter>
+
+        <ReactQueryDevtools
+          initialIsOpen={false}
+        />
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 };
 

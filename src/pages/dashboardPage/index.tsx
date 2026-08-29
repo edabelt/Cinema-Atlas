@@ -21,6 +21,13 @@ const DashboardPage: React.FC = () => {
 
   const dashboardOptions = [
     {
+      title: "Cinema Atlas",
+      description:
+        "Explore geographic, genre and thematic patterns through interactive visualisations.",
+      path: "/cinema-atlas",
+      featured: true,
+    },
+    {
       title: "Discover Movies",
       description:
         "Browse and filter popular movies.",
@@ -78,7 +85,7 @@ const DashboardPage: React.FC = () => {
         color="text.secondary"
         sx={{ marginBottom: 5 }}
       >
-        Welcome to your DaddyMovies dashboard.
+        Welcome to your Cinema Atlas dashboard.
       </Typography>
 
       <Grid
@@ -91,32 +98,63 @@ const DashboardPage: React.FC = () => {
             item
             xs={12}
             sm={6}
-            md={4}
+            md={option.featured ? 12 : 4}
             key={option.title}
             sx={{ display: "flex" }}
           >
             <Paper
-              elevation={3}
+              elevation={option.featured ? 6 : 3}
               sx={{
                 width: "100%",
-                minHeight: 190,
+                minHeight: option.featured
+                  ? 220
+                  : 190,
                 padding: 3,
                 display: "flex",
                 flexDirection: "column",
+                color: option.featured
+                  ? "#ffffff"
+                  : "inherit",
+                background: option.featured
+                  ? "linear-gradient(135deg, #17233d 0%, #090e18 100%)"
+                  : undefined,
+                border: option.featured
+                  ? "1px solid rgba(246, 181, 80, 0.45)"
+                  : undefined,
               }}
             >
+              {option.featured && (
+                <Typography
+                  variant="overline"
+                  sx={{
+                    color: "#f6b550",
+                    letterSpacing: "0.18em",
+                    marginBottom: 1,
+                  }}
+                >
+                  Visual analytics
+                </Typography>
+              )}
+
               <Typography
-                variant="h5"
+                variant={
+                  option.featured ? "h4" : "h5"
+                }
                 gutterBottom
               >
                 {option.title}
               </Typography>
 
               <Typography
-                color="text.secondary"
                 sx={{
                   flexGrow: 1,
                   marginBottom: 3,
+                  color: option.featured
+                    ? "rgba(255,255,255,0.72)"
+                    : "text.secondary",
+                  maxWidth: option.featured
+                    ? 650
+                    : undefined,
                 }}
               >
                 {option.description}
@@ -127,8 +165,20 @@ const DashboardPage: React.FC = () => {
                 onClick={() =>
                   navigate(option.path)
                 }
+                sx={{
+                  alignSelf: "flex-start",
+                  ...(option.featured && {
+                    backgroundColor: "#f6b550",
+                    color: "#111827",
+                    "&:hover": {
+                      backgroundColor: "#ffc766",
+                    },
+                  }),
+                }}
               >
-                Open
+                {option.featured
+                  ? "Explore the Atlas"
+                  : "Open"}
               </Button>
             </Paper>
           </Grid>

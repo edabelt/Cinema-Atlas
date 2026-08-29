@@ -156,3 +156,51 @@ export const searchMovies = (
     return response.json();
   });
 };
+
+export const getMoviesByCountryAndYear = (
+  countryCode: string,
+  year: number,
+  page: number = 1
+) => {
+  const parameters = new URLSearchParams({
+    api_key: import.meta.env.VITE_TMDB_KEY,
+    language: "en-US",
+    include_adult: "false",
+    include_video: "false",
+    sort_by: "popularity.desc",
+    with_origin_country: countryCode,
+    "primary_release_date.gte": `${year}-01-01`,
+    "primary_release_date.lte": `${year}-12-31`,
+    page: String(page),
+  });
+
+  return fetch(
+    `https://api.themoviedb.org/3/discover/movie?${parameters.toString()}`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(
+        `Unable to fetch movies for ${countryCode} in ${year}. Response status: ${response.status}`
+      );
+    }
+
+    return response.json();
+  });
+};
+
+export const getMovieKeywords = (
+  id: string | number
+) => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${id}/keywords?api_key=${
+      import.meta.env.VITE_TMDB_KEY
+    }`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(
+        `Unable to fetch keywords for movie ${id}. Response status: ${response.status}`
+      );
+    }
+
+    return response.json();
+  });
+};

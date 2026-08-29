@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../../contexts/authContext";
 import { supabase } from "../../supabaseClient";
-import logo from "../../images/daddy-movies-logo.svg";
+import logo from "../../images/cinema-atlas-logo.svg";
 
 const Offset = styled("div")(
   ({ theme }) => theme.mixins.toolbar
@@ -56,7 +56,13 @@ const SiteHeader: React.FC = () => {
     user?.user_metadata.name ||
     user?.email?.split("@")[0];
 
+  const cinemaAtlasOption = {
+    label: "Cinema Atlas",
+    path: "/cinema-atlas",
+  };
+
   const guestOptions = [
+    cinemaAtlasOption,
     {
       label: "Movies",
       path: "/movies",
@@ -143,6 +149,7 @@ const SiteHeader: React.FC = () => {
           label: "Dashboard",
           path: "/dashboard",
         },
+        cinemaAtlasOption,
         ...movieOptions,
         ...actorOptions,
       ]
@@ -159,13 +166,13 @@ const SiteHeader: React.FC = () => {
           <Box
             component="img"
             src={logo}
-            alt="DaddyMovies"
+            alt="Cinema Atlas"
             onClick={handleLogoClick}
             sx={{
               width: {
-                xs: 170,
-                sm: 220,
-                md: 270,
+                xs: 190,
+                sm: 240,
+                md: 285,
               },
               height: 56,
               objectFit: "contain",
@@ -184,7 +191,7 @@ const SiteHeader: React.FC = () => {
                 paddingY: 0.75,
                 borderRadius: 5,
                 backgroundColor:
-                  "rgba(255, 255, 255, 0.16)",
+                  "rgba(255,255,255,0.16)",
                 whiteSpace: "nowrap",
                 display: {
                   xs: "none",
@@ -261,11 +268,20 @@ const SiteHeader: React.FC = () => {
 
               <Button
                 color="inherit"
-                onMouseEnter={(event) =>
-                  openMenu(
-                    event,
-                    "movies"
+                onMouseEnter={closeMenu}
+                onClick={() =>
+                  navigateTo(
+                    cinemaAtlasOption.path
                   )
+                }
+              >
+                Cinema Atlas
+              </Button>
+
+              <Button
+                color="inherit"
+                onMouseEnter={(event) =>
+                  openMenu(event, "movies")
                 }
               >
                 Movies
@@ -274,10 +290,7 @@ const SiteHeader: React.FC = () => {
               <Button
                 color="inherit"
                 onMouseEnter={(event) =>
-                  openMenu(
-                    event,
-                    "actors"
-                  )
+                  openMenu(event, "actors")
                 }
               >
                 Actors
@@ -299,8 +312,7 @@ const SiteHeader: React.FC = () => {
                 }
                 onClose={closeMenu}
                 MenuListProps={{
-                  onMouseLeave:
-                    closeMenu,
+                  onMouseLeave: closeMenu,
                 }}
               >
                 {movieOptions.map(
@@ -327,8 +339,7 @@ const SiteHeader: React.FC = () => {
                 }
                 onClose={closeMenu}
                 MenuListProps={{
-                  onMouseLeave:
-                    closeMenu,
+                  onMouseLeave: closeMenu,
                 }}
               >
                 {actorOptions.map(
